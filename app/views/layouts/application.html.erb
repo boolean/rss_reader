@@ -8,6 +8,10 @@
 </head>
 <body>
 
+<%= link_to 'logout', destroy_user_session_path, :method => :delete %>
+|
+<%= link_to 'profile', edit_user_registration_path %>
+
 <%= yield %>
 
 </body>
