@@ -1,8 +1,0 @@
-<% @channels.each do |channel| %>
-	<h2><%= channel.title %></h2>
-
-	<% channel.articles.each do |article| %>
-		<h3><%= article.title %></h3>
-		<%= article.description.html_safe %>
-	<% end %>
-<% end %>

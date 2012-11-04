@@ -9,10 +9,10 @@ class Channel < ActiveRecord::Base
 
   validates :user_id, :title, :url, presence: true
 
-  def initialize(args)
+  def initialize(args=nil)
     super(args)
 
-    self.update_feeds
+    self.update_feeds if self.url
   end
 
   def update_feeds

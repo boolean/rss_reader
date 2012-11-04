@@ -1,0 +1,9 @@
+<div class="media">
+  <a class="pull-left" href="#">
+    <%= image_tag comment.user.avatar.small_thumb.url, :class => "media-object" %>
+  </a>
+  <div class="media-body">
+    <h4 class="media-heading"><%= comment.user.login %> - <%= comment.created_at.to_s(:short)%></h4>
+    <%= comment.body %>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<h3><%= link_to article.title, article.link, :target => 'blank' %></h3>
+<%= article.pub_date.to_s(:short) %>
+<%= article.description.html_safe %>
+
+<div class="accordion" id="article<%= article.id %>">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#article<%= article.id %>" href="#collapse<%= article.id %>">
+        Comments (<%= article.comments.size %>)
+      </a>
+    </div>
+    <div id="collapse<%= article.id %>" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <%= form_for [article, Comment.new] do |f| %>
+          <%= f.text_area :body, :rows => 2, :cols => 30 %>
+          <%= f.submit %>
+        <% end %>
+
+        <%= render article.comments %>
+      </div>
+    </div>
+  </div>
+</div>

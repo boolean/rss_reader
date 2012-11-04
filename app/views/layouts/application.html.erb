@@ -7,17 +7,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div  class="navbar-inner">
+    <a class="brand" href="/">RssReader</a>
+    <ul class="nav">
+      <li><%= link_to 'channels', channels_path %></li>
+      <li><%= link_to 'profile', edit_user_registration_path %></li>
+      <li><%= link_to 'logout', destroy_user_session_path, :method => :delete %></li>
+    </ul>
+  </div>
+</div>
 
-<%= image_tag current_user.avatar.small_thumb.url if current_user.avatar %>
-
-<%= link_to 'logout', destroy_user_session_path, :method => :delete %>
-|
-<%= link_to 'profile', edit_user_registration_path %>
-|
-<%= link_to 'channels', channels_path %>
-
-<div class="container">
-<%= yield %>
+<div class="row">
+  <div class="span2">
+    <% @channels.each do |channel| %>
+      <ul>
+        <li><%= link_to channel.title, channel %></li>
+      </ul>
+    <% end %>
+  </div>
+  <div class="span8">
+    <%= yield %>
+  </div>
 </div>
 </body>
 </html>

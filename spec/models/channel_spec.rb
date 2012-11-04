@@ -7,6 +7,11 @@ describe Channel do
     @channel.user_id = 1
   end
 
+  it "should return a Channel instance" do
+    @channel = Channel.new
+    @channel.should_not be_nil
+  end
+
   it "Should save the channel" do
     @channel.save.should be_true
   end
