@@ -45,7 +45,6 @@ class ChannelsController < ApplicationController
     @channel = Channel.new(params[:channel])
 
     @channel.user = current_user
-    @channel.update_feeds
 
     respond_to do |format|
       if @channel.save
@@ -63,10 +62,9 @@ class ChannelsController < ApplicationController
   def update
     @channel = Channel.find(params[:id])
 
-    @channel.update_feeds
-
     respond_to do |format|
       if @channel.update_attributes(params[:channel])
+        @channel.update_feeds
         format.html { redirect_to @channel, notice: 'Channel was successfully updated.' }
         format.json { head :no_content }
       else
