@@ -9,4 +9,6 @@ class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :login, :email, :password, :password_confirmation, :remember_me, :avatar
 
   mount_uploader :avatar, AvatarUploader
+
+  has_many :channels
 end
