@@ -8,12 +8,13 @@ class Channel < ActiveRecord::Base
   has_many :channel_articles
   has_many :articles, :through => :channel_articles
 
-  validates :user_id, :title, :url, presence: true
+  validates_format_of :url, :with => URI::regexp(%w(http https))
+  validates :user_id, :url, presence: true
 
   def initialize(attributes=nil, options={})
     super(attributes, options)
 
-    self.update_feeds unless self.url.blank?
+    self.update_feeds if !self.url.blank? and self.valid?
   end
 
   def update_feeds

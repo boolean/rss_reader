@@ -1,7 +1,14 @@
 <div class='article'>
-  <%= link_to channel_article_path(channel_article, :channel_article => {:starred => !channel_article.starred}), :method => :put do %>
-    <span class="star star-<%= channel_article.starred? ? 'on' : 'off' %>"></span>
-  <% end %>
+  <h3>
+
+    <%= link_to channel_article_path(channel_article, :channel_article => {:starred => !channel_article.starred}), :method => :put do %>
+      <span class="star star-<%= channel_article.starred? ? 'on' : 'off' %>"></span>
+    <% end %>
+
+    <%= link_to channel_article.article.title, channel_article.article.link, :target => 'blank' %><small class='pull-right'><%= channel_article.article.pub_date.to_s(:short) %></small>
+  </h3>
+
+
 
   <%= render channel_article.article %>
 </div>
