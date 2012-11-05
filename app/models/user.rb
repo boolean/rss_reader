@@ -11,4 +11,6 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
 
   has_many :channels
+  has_many :channel_articles, :through => :channels
 end
+

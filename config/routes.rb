@@ -3,7 +3,9 @@ RssReader::Application.routes.draw do
 
   resources :channels
 
-  resources :articles, :only => [:show] do
+  resources :channel_articles, :only => [:update]
+
+  resources :articles, :only => [:index, :show] do
     resources :comments, :only => [:create]
   end
 
