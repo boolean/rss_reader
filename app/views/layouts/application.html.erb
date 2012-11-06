@@ -21,13 +21,22 @@
 
 <div class="row">
   <div class="span2">
-    <% @channels.each do |channel| %>
-      <ul>
-        <li><%= link_to channel.title, channel %></li>
-      </ul>
-    <% end %>
+    <ul class="nav nav-list">
+      <li class="nav-header">Channels</li>
+      <% @channels.each do |channel| %>
+
+          <li><%= link_to channel.title, channel %></li>
+
+      <% end %>
+    </ul>
   </div>
   <div class="span8">
+    <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <%= value %>
+    </div>
+    <% end %>
     <%= yield %>
   </div>
 </div>
