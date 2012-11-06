@@ -30,7 +30,18 @@ describe ChannelsController do
   end
 
   describe "GET index" do
-    it "assigns all channels as @channels" do
+    it "assigns only the user channels as @channels" do
+      @another_user = User.create!(first_name: 'Test',
+                        last_name: 'test',
+                        login: 'test1',
+                        email: 'test1@test.com',
+                        password: 'testtesttest',
+                        password_confirmation: 'testtesttest')
+
+      other_channel = Channel.new(valid_attributes)
+      other_channel.user = @another_user
+      other_channel.save
+
       channel = create_valid_channel
       get :index
       assigns(:channels).should eq([channel])
